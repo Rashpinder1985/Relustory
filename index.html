@@ -3,47 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ReLU Mind Filter Slider + Video</title>
+  <title>ReLU Mind Filter Slider</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    .slider-container { max-width: 800px; margin: 40px auto; position: relative; }
+    .slider-container { max-width: 800px; margin: 50px auto; position: relative; }
     .slide { display: none; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
-    .slide img, .slide video { max-width: 100%; border-radius: 8px; }
+    .slide img { max-width: 100%; border-radius: 8px; }
     .active { display: block; }
     .nav-buttons { margin-top: 20px; display: flex; justify-content: space-between; }
     .nav-buttons button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 8px; background: #007bff; color: white; cursor: pointer; }
     .nav-buttons button:disabled { background: #ccc; cursor: default; }
-    .download-btn { margin-top: 10px; display: inline-block; padding: 8px 16px; background: #28a745; color: white; text-decoration: none; border-radius: 6px; }
   </style>
 </head>
 <body>
   <div class="slider-container">
-    <!-- Slides 1–4 as before -->
     <div class="slide active">
       <h2>Why do I feel so mentally drained?</h2>
-      <img src="slide1.png" alt="Leaky Pipe" />
+      <img src="slide1_pipe.png" alt="Leaky Pipe" />
       <p>Your mind has energy — but distractions drain it.</p>
     </div>
-    <!-- ... other image slides ... -->
-
-    <!-- Slide with Video -->
     <div class="slide">
-      <h2>Watch: Applying ReLU Filter</h2>
-      <video id="reluVideo" width="720" controls>
-        <source src="relu_animation.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <br>
-      <a id="downloadLink" class="download-btn" download="relu_animation.mp4">Download Video</a>
+      <h2>Identifying the Leaks</h2>
+      <img src="slide2_leaks.png" alt="Labeled Leaks" />
+      <p>Negative thoughts = negative inputs.</p>
     </div>
-
-    <!-- Final Output Slide -->
+    <div class="slide">
+      <h2>Applying ReLU</h2>
+      <img src="slide3_relu.png" alt="Applying ReLU" />
+      <p>ReLU is a mental filter. It blocks the noise.</p>
+    </div>
+    <div class="slide">
+      <h2>Math Behind It</h2>
+      <img src="slide4_table.png" alt="ReLU Table" />
+      <p><code>ReLU(x) = max(0, x)</code><br />Let go of negative values. Let the positives flow.</p>
+    </div>
     <div class="slide">
       <h2>The Output</h2>
       <img src="slide5_output.png" alt="Final Output" />
       <p>Clear mind. Clear values. Strong output.</p>
     </div>
-
     <div class="nav-buttons">
       <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
       <button id="nextBtn" onclick="changeSlide(1)">Next</button>
@@ -53,22 +51,17 @@
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn'), nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
     function changeSlide(direction) {
       slides[currentSlide].classList.remove('active');
       currentSlide += direction;
       slides[currentSlide].classList.add('active');
+
       prevBtn.disabled = currentSlide === 0;
       nextBtn.disabled = currentSlide === slides.length - 1;
     }
-
-    // Optional: Set download link dynamically
-    const video = document.getElementById('reluVideo');
-    const downloadLink = document.getElementById('downloadLink');
-    video.addEventListener('loadedmetadata', () => {
-      downloadLink.href = video.currentSrc;
-    });
   </script>
 </body>
 </html>
